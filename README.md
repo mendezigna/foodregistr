@@ -5,3 +5,5 @@
 * Product Backlog: https://trello.com/b/r1zlW4fz/foodregistr
 
 * Documentacion: https://github.com/foodregistr/foodregistr/blob/dev/TECH.md
+
+* Modelo + Endpoints: https://github.com/foodregistr/foodregistr/blob/dev/MODEL.md
