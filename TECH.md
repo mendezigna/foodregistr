@@ -15,3 +15,8 @@
 
 * Configurar SSH en Github y clonar el proyecto usando SSH
 
+## TODO
+
+* Deploy automatico del backend a Heroku
+
+* Reglas seguras en Firebase
