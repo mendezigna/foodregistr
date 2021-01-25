@@ -35,11 +35,11 @@
 | description |
 | timestamp   | -> Correspondiente con un dia a las 00:00hs
 
-| User        | -> No procesable, solo lo pongo aca para los DTOs
+
+| User        | 
 | ----------- |
 | id          | 
 | name        | 
 | email       |
 | password    |
-
 
