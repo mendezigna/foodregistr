@@ -20,3 +20,5 @@
 * Deploy automatico del backend a Heroku
 
 * Reglas seguras en Firebase
+
+* Configurar .envs
