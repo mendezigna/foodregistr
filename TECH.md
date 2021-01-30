@@ -10,6 +10,7 @@
 
 * Angular - https://angular.io/docs
 * Ionic - https://ionicframework.com/docs
+* Material Icons - https://marella.me/material-icons/
 
 ## Cosas importantes para que programar no sea una bosta
 
