@@ -15,6 +15,7 @@
 ## Cosas importantes para que programar no sea una bosta
 
 * Configurar SSH en Github y clonar el proyecto usando SSH
+* <code>ng g c <nombre></code> te genera un Component entero
 
 ## TODO
 
@@ -23,3 +24,5 @@
 * Reglas seguras en Firebase
 
 * Configurar .envs
+
+* Configurar eslint y tsconfig en front
