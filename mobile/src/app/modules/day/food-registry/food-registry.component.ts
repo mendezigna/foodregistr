@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FoodRegistryComponent implements OnInit {
 
-  public hello: string;
+  public hello;
 
   constructor(
     private dayService: DayService

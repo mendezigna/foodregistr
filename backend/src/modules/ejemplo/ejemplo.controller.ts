@@ -20,9 +20,8 @@ export class EjemploController {
   }
 
   @Post()
-  postEjemplo(): Promise<void> {
-    const ej: Ejemplo = { id: 'caca', field: 'hello world' };
-    return this.ejemploService.postEjemplo(ej);
+  postEjemplo(@Req() req: Request): Promise<string> {
+    return this.ejemploService.postEjemplo(req.body);
   }
 
   @Put(':id')
