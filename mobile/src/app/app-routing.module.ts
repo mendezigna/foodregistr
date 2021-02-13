@@ -14,6 +14,18 @@ const routes: Routes = [
     pathMatch:   'full',
     loadChildren: () =>
     import('./modules/day/day.module').then(m => m.DayModule)
+  },
+  {
+    path: 'auth/login',
+    pathMatch: 'full',
+    loadChildren: () =>
+    import('./modules/auth/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: 'auth/signup',
+    pathMatch: 'full',
+    loadChildren: () =>
+    import('./modules/auth/signup.module').then(m => m.SignupModule)
   }
 ];
 @NgModule({

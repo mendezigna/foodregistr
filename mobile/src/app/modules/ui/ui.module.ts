@@ -4,7 +4,7 @@ import { TextInputFieldComponent } from "./text-input-field/text-input-field.com
 
 @NgModule({
     declarations: [TextInputFieldComponent, PasswordInputFieldComponent],
-    exports: [],
+    exports: [TextInputFieldComponent, PasswordInputFieldComponent],
     imports: [],
   })
   export class UiModule {}

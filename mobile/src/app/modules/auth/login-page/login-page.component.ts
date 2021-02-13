@@ -1,14 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent {
+  invalidFields = false
+  password  = "";
+  email  = "";
 
-  constructor() { }
 
-  ngOnInit() {}
+  constructor(private authService : AuthService, private router : Router) {}
 
+  setPassword(event: any): void {
+    this.password = event.target.value
+  }
+
+  setEmail(event): void {
+    this.email = event.target.value
+  }
+
+  async onSubmit(): Promise<void> {
+    try {
+      const refreshToken = await this.authService.login(this.password, this.email)
+      localStorage.setItem('token', refreshToken)
+      this.router.navigate(["../../day"])
+    }    
+    catch (err) {
+      this.invalidFields = true
+    }
+  }
 }

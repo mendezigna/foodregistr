@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'password-input-field',
@@ -7,8 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PasswordInputFieldComponent implements OnInit {
 
+  @Input()
+  placeholder : String;
+
   constructor() { }
 
-  ngOnInit() {}
+
+  ngOnInit() {
+  }
+
+
+  getPlaceholder(){
+    return this.placeholder
+  }
 
 }

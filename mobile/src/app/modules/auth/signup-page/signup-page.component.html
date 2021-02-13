@@ -1,3 +1,44 @@
-<p>
-  signup-page works!
-</p>
+<ion-content>
+  <div class = "container">
+    <div class="header">
+      <img src="assets/icon/logo.svg" class="logo"> 
+      <h2 class="title">FoodRegistr</h2>
+    </div>
+    <div class="signup-form">
+      <div class="fields">
+        <div class="field email-field">
+          <text-input-field icon="mail-outline" placeholder="E-mail" type="email" (keyup)="setEmail($event)"></text-input-field>
+          <div class="fieldError">
+            <ion-label *ngIf="showNullEmailErr"> The email address is improperly formatted </ion-label>
+            <ion-label *ngIf="showRegisteredEmailErr"> {{email}} is already registered. </ion-label>
+          </div>
+        </div>
+        <div class="field">
+          <text-input-field  icon="person-outline" placeholder="Name" type="text" (keyup)="setName($event)"></text-input-field>
+          <div class="fieldError">
+            <ion-label *ngIf="showNullNameErr">Please complete this field</ion-label>
+          </div>
+        </div>
+        <div class="field">
+          <password-input-field placeholder="Password" (keyup)="setPassword($event)"></password-input-field>
+          <div class="fieldError">
+            <ion-label *ngIf="showShortPassErr">Password must be at least 6 characters.</ion-label>
+          </div>
+        </div>
+        <div class="field">
+          <password-input-field placeholder="Repeat Password" (keyup)="setRepeatPassword($event)"></password-input-field>
+          <div class="fieldError">
+            <ion-label *ngIf="showRepeatPassErr">Please complete this field</ion-label>
+            <ion-label *ngIf="showPassMatchErr">Passwords don't match.</ion-label>
+          </div>
+        </div>
+      </div>
+      <div class="submit">
+        <ion-button class="submit-button" (click)="onSubmit()" fill="clear" type="submit" size="small" color="dark" strong>Sign Up</ion-button>
+      </div>
+    </div>
+    <div class="redirect">
+      <ion-label class="redirect-button" routerLink="../login" routerLinkActive="active">I have an account</ion-label>
+    </div>
+  </div>
+</ion-content>
