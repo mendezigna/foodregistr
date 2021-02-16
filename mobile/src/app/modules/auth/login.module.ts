@@ -15,6 +15,7 @@ export const loginRoutes: Routes = [
 
 @NgModule({
     declarations: [LoginPageComponent],
+    entryComponents: [],
     exports: [LoginPageComponent],
     imports: [RouterModule.forChild(loginRoutes), UiModule, HttpClientModule, CommonModule],
     providers: [AuthService]

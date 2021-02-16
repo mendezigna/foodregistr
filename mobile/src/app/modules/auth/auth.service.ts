@@ -1,19 +1,20 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import firebase from "firebase/app";
+import { AngularFireAuth } from "@angular/fire/auth";
+import { AngularFirestore } from "@angular/fire/firestore";
 
 @Injectable()
 export class AuthService {
-    private fireAuth: firebase.auth.Auth;
-    constructor(private http : HttpClient) {
-        this.fireAuth = firebase.auth()
-    }
+    constructor(
+        private fireAuth: AngularFireAuth,
+        private fireDAO: AngularFirestore
+        ) {}
 
     public signup(password: string, email: string, name : string) : Promise<string> {
         return this.fireAuth.createUserWithEmailAndPassword(email, password)
         .then((res) => {
             res.user.updateProfile({displayName : name})
-            debugger; return res.user.refreshToken
+            this.createUser(res.user.toJSON(), name)
+            return (res.user.toJSON() as any).stsTokenManager.accessToken
         })
         .catch((err) => {
             throw new Error(err)
@@ -22,11 +23,19 @@ export class AuthService {
 
     public login(password: string, email: string) : Promise<string> {
         return this.fireAuth.signInWithEmailAndPassword(email, password)
-        .then((res) =>{ 
-            return res.user.refreshToken
+        .then((res) => { 
+            return (res.user.toJSON() as any).stsTokenManager.accessToken
         })
         .catch((err) => {
             throw new Error(err)
+        })
+    }
+
+    private createUser(user, displayName: string) {
+        this.fireDAO.collection('user').doc(user.uid).set({
+            displayName: displayName,
+            email: user.providerData[0].email,
+            photoURL: user.providerData[0].photoURL
         })
     }
 }

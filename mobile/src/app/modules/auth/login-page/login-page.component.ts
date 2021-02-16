@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
@@ -25,8 +25,8 @@ export class LoginPageComponent {
 
   async onSubmit(): Promise<void> {
     try {
-      const refreshToken = await this.authService.login(this.password, this.email)
-      localStorage.setItem('token', refreshToken)
+      const accessToken = await this.authService.login(this.password, this.email)
+      localStorage.setItem('token', accessToken)
       this.router.navigate(["../../day"])
     }    
     catch (err) {
@@ -34,3 +34,4 @@ export class LoginPageComponent {
     }
   }
 }
+ 

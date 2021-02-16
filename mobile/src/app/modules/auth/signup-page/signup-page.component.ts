@@ -44,8 +44,8 @@ export class SignupPageComponent {
     this.verifyField();
     if (this.allFieldsAreOK()) { 
       try {
-        const refreshToken: string = await this.authService.signup(this.password, this.email, this.name)
-        localStorage.setItem('token', refreshToken)
+        const accessToken: string = await this.authService.signup(this.password, this.email, this.name)
+        localStorage.setItem('token', accessToken)
         this.router.navigate(["../../day"]) 
       } catch(err) {
         switch(err.message){

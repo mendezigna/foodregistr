@@ -16,6 +16,7 @@ export const signupRoutes: Routes = [
 
 @NgModule({
     declarations: [SignupPageComponent],
+    entryComponents: [],
     exports: [SignupPageComponent],
     imports: [RouterModule.forChild(signupRoutes), UiModule, HttpClientModule, CommonModule],
     providers: [AuthService]
