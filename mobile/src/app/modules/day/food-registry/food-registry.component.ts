@@ -1,25 +1,32 @@
+import { UtilsService } from './../../utils/utils.service';
 import { FoodRegistry } from './FoodRegistry';
 import { DayService } from './../day.service'
-import { Component } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { Camera, CameraPhoto, CameraResultType } from '@capacitor/core'
 @Component({
   selector: 'food-registry',
   templateUrl: './food-registry.component.html',
   styleUrls: ['./food-registry.component.scss'],
 })
-export class FoodRegistryComponent {
+export class FoodRegistryComponent implements OnInit {
 
   public imageBlobUrl: string;
 
   public description: string;
 
+  @Input()
   public foodType: string;
 
   constructor(
-    private dayService: DayService
-  ) { }
+    private dayService: DayService,
+    private utilsService: UtilsService
+  ) {}
+  
+  ngOnInit(): void {
+    this.foodType = this.utilsService.capitalize(this.foodType)
+  }
 
-  public setDescription(event : any){
+  public setDescription(event : any): void {
     this.description = event.target.value
   }
 

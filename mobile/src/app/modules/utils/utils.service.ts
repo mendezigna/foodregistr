@@ -11,4 +11,8 @@ export class UtilsService {
   public formatDate(date: Date): string {
     return date.toISOString().split('T')[0]
   }
+
+  public capitalize(str: string): string {
+    return str[0].toUpperCase() + str.slice(1);
+  }
 }

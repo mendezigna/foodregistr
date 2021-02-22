@@ -11,6 +11,8 @@ export class DayPageComponent {
   @ViewChild(FoodRegistryComponent)
   foodRegistry: FoodRegistryComponent
 
+  foodTypes: string[] = ['breakfast','lunch','snack','dinner']
+
   constructor(private toast: ToastController) {}
 
   public submit(): void {
