@@ -1,0 +1,19 @@
+.btn-submit {
+    z-index: 11;
+    position: absolute;
+    bottom: 3%;
+    transform: scale(1.1, 1.1);
+    --background: #f5f5f5;
+}
+
+.btn-submit ion-icon {
+    font-size: 3.8em;
+    color: black;
+}
+
+.btn-submit-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+

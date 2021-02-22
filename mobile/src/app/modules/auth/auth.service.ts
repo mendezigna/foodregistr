@@ -21,10 +21,13 @@ export class AuthService {
         })
     }
 
-    public login(password: string, email: string) : Promise<string> {
+    public login(password: string, email: string) : any {
         return this.fireAuth.signInWithEmailAndPassword(email, password)
         .then((res) => { 
-            return (res.user.toJSON() as any).stsTokenManager.accessToken
+            return {
+                token: (res.user.toJSON() as any).stsTokenManager.accessToken,
+                username: res.user.displayName
+            }
         })
         .catch((err) => {
             throw new Error(err)

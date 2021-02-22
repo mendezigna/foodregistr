@@ -46,6 +46,7 @@ export class SignupPageComponent {
       try {
         const accessToken: string = await this.authService.signup(this.password, this.email, this.name)
         localStorage.setItem('token', accessToken)
+        localStorage.setItem('username', this.name)
         this.router.navigate(["../../day"]) 
       } catch(err) {
         switch(err.message){

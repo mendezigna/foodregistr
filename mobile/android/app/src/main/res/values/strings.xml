@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">FoodRegistr</string>
+    <string name="title_activity_main">FoodRegistr</string>
+    <string name="package_name">io.ionic.food</string>
+    <string name="custom_url_scheme">io.ionic.food</string>
+</resources>

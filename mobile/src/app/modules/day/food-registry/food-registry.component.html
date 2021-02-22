@@ -1,10 +1,36 @@
-<ion-card>
-  <ion-card-header>
-    <ion-card-title>{{ hello.title }}</ion-card-title>
-    <ion-card-subtitle>{{ hello.subtitle }}</ion-card-subtitle>
-  </ion-card-header>
-
+<ion-card class='food-type'>
   <ion-card-content>
-    {{ hello.content }}
+    <h1>Breakfast</h1>
+  </ion-card-content>
+</ion-card>
+
+<ion-card class='food-photo' (click)='toggleUploadPhoto()'>
+  <ion-card-content>
+    <div class="photo-container photo-frame"  *ngIf="!imageBlobUrl; else photo">
+      <ion-icon name="camera-outline" class='photo-icon'></ion-icon>
+      <p class="ion-text-center photo-p">Click here to upload your <br>Breakfast</p>
+    </div>
+    <ng-template #photo>
+      <div class="photo-container" (click)='removePhoto()'>
+        <div class="badge-photo-remove">
+          <ion-icon name="close-circle-outline" class="badge-photo-remove-icon"></ion-icon>
+        </div>
+      <ion-img [src]="[imageBlobUrl]" class="photo">
+      </ion-img>
+      </div>
+    </ng-template>
+  </ion-card-content>
+</ion-card>
+
+<ion-card class='food-description'>
+  <ion-card-content>
+    <ion-textarea
+      auto-grow='false'
+      maxlength='140'
+      placeholder="Click here to write a short description"
+      rows='5'
+      type='text'
+      (keyup)="setDescription($event)"
+    ></ion-textarea>
   </ion-card-content>
 </ion-card>

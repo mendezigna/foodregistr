@@ -1,26 +1,43 @@
 import { Injectable } from "@angular/core";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { AngularFireStorage } from "@angular/fire/storage";
+import { AngularFireAuth } from "@angular/fire/auth";
+import { UtilsService } from "../utils/utils.service";
+import { FoodRegistry } from "./food-registry/FoodRegistry";
 
 @Injectable()
 export class DayService {
-    constructor() {}
+    constructor(
+        private fireDAO: AngularFirestore,
+        private fireAuth: AngularFireAuth,
+        private fireStorage: AngularFireStorage,
+        private utilsService: UtilsService
+    ) {}
 
-    public getHello(): any {
-        return {
-            title: this.getHelloTitle(),
-            subtitle: this.getHelloSubtitle(),
-            content: this.getHelloContent(),
+    public async registerFood(foodRegistry: FoodRegistry, blobUrl: string): Promise<any> {
+        this.validateFoodRegistryNotEmpty(foodRegistry, blobUrl)
+
+        const uid = (await this.fireAuth.currentUser).uid
+        const imageId = await this.saveImageFromBlob(uid, foodRegistry.date.toString(), blobUrl)
+        const dateString = this.utilsService.formatDate(foodRegistry.date)
+        return this.fireDAO.collection(`${uid}`)
+            .doc(dateString)
+            .set({foodRegistries: [{description: foodRegistry.description, imageId, foodType: foodRegistry.foodType}]})
+    }
+
+    private validateFoodRegistryNotEmpty(foodRegistry: FoodRegistry, blobUrl: string) {
+        if (foodRegistry.description === undefined && blobUrl === undefined) {
+            throw new Error('No food description or image provided.')
         }
     }
 
-    private getHelloTitle(): string {
-        return 'Hello world!';
-    }
-
-    private getHelloSubtitle(): string {
-        return 'Culpa excepteur aute consequat mollit aliqua enim reprehenderit nulla.';
-    }
-
-    private getHelloContent(): string {
-        return 'Dolore dolor in culpa commodo aliqua. Ex ullamco elit labore sint amet. Velit Lorem incididunt irure ex consectetur duis magna quis. Velit enim nostrud elit sit eu nostrud nisi ad commodo nulla amet exercitation culpa voluptate. Est ea cillum dolor in veniam laboris Lorem.';
+    private async saveImageFromBlob(uid: string, date : string, blobUrl: string): Promise<string> {
+        let imageId = '';
+        if (blobUrl) {
+            const blob = await this.utilsService.getBlob(blobUrl)
+            const snapshot = await this.fireStorage.ref(uid).child(date).put(blob)
+            imageId = snapshot.ref.fullPath;
+        }
+        return imageId
     }
 }

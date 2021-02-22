@@ -25,8 +25,9 @@ export class LoginPageComponent {
 
   async onSubmit(): Promise<void> {
     try {
-      const accessToken = await this.authService.login(this.password, this.email)
-      localStorage.setItem('token', accessToken)
+      const {token, username} = await this.authService.login(this.password, this.email)
+      localStorage.setItem('token', token)
+      localStorage.setItem('username', username)
       this.router.navigate(["../../day"])
     }    
     catch (err) {

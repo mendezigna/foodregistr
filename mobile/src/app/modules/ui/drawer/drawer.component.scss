@@ -1,0 +1,38 @@
+.menu-header{
+    background-color: #EDEDED;
+    height: 110px;
+}
+
+.userPhoto{
+    text-align: center;
+    padding-top: 30px;
+}
+
+.username{
+    text-align: center;
+    width: auto;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+
+
+    color: #000000;
+
+
+}
+
+ion-list{
+    position: fixed;
+    padding-bottom: 5%;
+    bottom: 0;
+}
+
+.content-list-item{
+    font-family: Roboto;
+    font-style: oblique;
+    font-weight: bold;
+    font-size: 20px;
+
+    color: #000000;
+}

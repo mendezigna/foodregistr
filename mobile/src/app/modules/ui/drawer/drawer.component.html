@@ -1,0 +1,27 @@
+<ion-menu class="menu" side="start" menuId="first" contentId="content" swipe-gesture="true">
+    <ion-header class="menu-header">
+        <div class="userPhoto">
+            <ion-icon name="person-circle-outline" size="large"></ion-icon>
+        </div>
+        <div class="username">
+            <ion-label> {{username}} </ion-label>
+        </div>
+    </ion-header>
+    <ion-content class="menu-content" id="content">
+      <ion-list>
+        <ion-item lines="none">
+            <ion-icon name="code-slash-outline" slot="start"></ion-icon>
+            <ion-button class="content-list-item" fill="clear" (click)="about()">About</ion-button>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+            <ion-button class="content-list-item" fill="clear" (click)="changePassword()">Change password</ion-button>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+            <ion-button class="content-list-item" fill="clear" (click)="logOut()">Log out</ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+</ion-menu>
+
