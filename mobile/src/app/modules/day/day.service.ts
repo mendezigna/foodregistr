@@ -18,11 +18,23 @@ export class DayService {
         this.validateFoodRegistryNotEmpty(foodRegistry, blobUrl)
 
         const uid = (await this.fireAuth.currentUser).uid
-        const imageId = await this.saveImageFromBlob(uid, foodRegistry.date.toString(), blobUrl)
         const dateString = this.utilsService.formatDate(foodRegistry.date)
-        return this.fireDAO.collection(`${uid}`)
-            .doc(dateString)
-            .set({foodRegistries: [{description: foodRegistry.description, imageId, foodType: foodRegistry.foodType}]})
+        const imageId = await this.saveImageFromBlob(uid, dateString, blobUrl, foodRegistry.foodType)
+        foodRegistry.imageId = imageId
+        const ref = this.fireDAO.collection(`${uid}`).doc(dateString).ref
+        return this.fireDAO.firestore.runTransaction((transaction) => {
+            return transaction.get(ref).then( snapshot => {
+                const foodRegistries = snapshot.get("foodRegistries") || []
+                const food = foodRegistries.find(f => f.foodType == foodRegistry.foodType)
+
+                if (food){
+                    console.log(foodRegistries.indexOf(food))
+                    foodRegistries.splice(foodRegistries.indexOf(food), 1)
+                }
+                foodRegistries.push(foodRegistry)
+                return transaction.set(ref, {foodRegistries})
+            })
+        })
     }
 
     private validateFoodRegistryNotEmpty(foodRegistry: FoodRegistry, blobUrl: string) {
@@ -31,11 +43,11 @@ export class DayService {
         }
     }
 
-    private async saveImageFromBlob(uid: string, date : string, blobUrl: string): Promise<string> {
+    private async saveImageFromBlob(uid: string, date : string, blobUrl: string, foodtype: string): Promise<string> {
         let imageId = '';
         if (blobUrl) {
             const blob = await this.utilsService.getBlob(blobUrl)
-            const snapshot = await this.fireStorage.ref(uid).child(date).put(blob)
+            const snapshot = await this.fireStorage.ref(uid).child(date + "/" + foodtype).put(blob)
             imageId = snapshot.ref.fullPath;
         }
         return imageId
