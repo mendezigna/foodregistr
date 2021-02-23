@@ -26,7 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AngularFireAuthModule,
     AngularFireStorageModule,
     IonicModule.forRoot({
-      mode: 'ios'
+      mode: 'ios',
+      swipeBackEnabled: false
     }), 
     AppRoutingModule,
   ],
