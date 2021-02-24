@@ -8,7 +8,7 @@
   <ion-card-content>
     <div class="photo-container photo-frame"  *ngIf="!imageBlobUrl; else photo">
       <ion-icon name="camera-outline" class='photo-icon'></ion-icon>
-      <p class="ion-text-center photo-p">Click here to upload your <br>Breakfast</p>
+      <p class="ion-text-center photo-p">Click here to upload your <br>{{ foodType }}</p>
     </div>
     <ng-template #photo>
       <div class="photo-container" (click)='removePhoto()'>

@@ -61,7 +61,7 @@ export class FoodRegistryComponent implements OnInit {
     const foodRegistry: FoodRegistry = {
       description: this.description,
       date: new Date(),
-      foodType: this.foodType || 'breakfast'
+      foodType: this.utilsService.decapitalize(this.foodType)
     }
 
     return this.dayService.registerFood(foodRegistry, this.imageBlobUrl)

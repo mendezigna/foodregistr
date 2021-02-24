@@ -1,22 +1,32 @@
 import { FoodRegistryComponent } from './../food-registry/food-registry.component';
-import { Component, ViewChild } from '@angular/core'
+import { Component, OnInit, ViewChildren } from '@angular/core'
 import { ToastController } from '@ionic/angular';
+import { DayService } from '../day.service';
 @Component({
   selector: 'app-day-page',
   templateUrl: './day-page.component.html',
   styleUrls: ['./day-page.component.scss'],
 })
-export class DayPageComponent {
+export class DayPageComponent implements OnInit {
 
-  @ViewChild(FoodRegistryComponent)
-  foodRegistry: FoodRegistryComponent
+  @ViewChildren(FoodRegistryComponent)
+  foodRegistries: FoodRegistryComponent[]
 
-  foodTypes: string[] = ['breakfast','lunch','snack','dinner']
+  foodTypes: string[]
 
-  constructor(private toast: ToastController) {}
+  constructor(private toast: ToastController, private dayService: DayService) {}
 
-  public submit(): void {
-    this.foodRegistry.submit()
+  ngOnInit(): void {
+    this.foodTypes = this.dayService.getFoodTypes()
+    this.dayService.resetDailyFoodRegistries(this.foodTypes)
+  }
+
+  public async submit(): Promise<void> {
+    for (const foodRegistry of this.foodRegistries) {
+      await foodRegistry.submit()
+    }
+    
+    this.dayService.registerDay()
       .then(() => this.successMsg())
       .catch((err) => {
         console.error(err)

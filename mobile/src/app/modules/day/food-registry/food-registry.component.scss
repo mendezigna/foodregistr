@@ -5,10 +5,6 @@ ion-card {
     margin-bottom: 1.5em;
 } 
 
-.food-type {
-
-}
-
 .food-photo {
     width: 20em;
     height: 20em;
@@ -79,4 +75,5 @@ ion-card {
 ion-textarea {
     --padding-top: -10px;
     font-size: 0.9em;
+    text-align: left;
 }
