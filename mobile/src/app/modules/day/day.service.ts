@@ -33,34 +33,34 @@ export class DayService {
         this.dailyFoodRegistries.splice(itemToReplace, 1, foodRegistry)
     }
 
-    public async registerFood(foodRegistry: FoodRegistry, blobUrl: string): Promise<void> {
+    public async registerFood(foodRegistry: FoodRegistry, blobUrl: string): Promise<any> {
         this.validateFoodRegistryNotEmpty(foodRegistry, blobUrl)
 
         const uid = (await this.fireAuth.currentUser).uid
         const dateString = this.utilsService.formatDate(foodRegistry.date)
         foodRegistry.imageId = await this.saveImageFromBlob(uid, dateString, blobUrl, foodRegistry.foodType)
         foodRegistry.description = foodRegistry.description || ''
+        const ref = this.fireDAO.collection(`${uid}`).doc(dateString).ref
+        return this.fireDAO.firestore.runTransaction((transaction) => {
+            return transaction.get(ref).then( snapshot => {
+                const foodRegistries = snapshot.get("foodRegistries") || []
+                const food = foodRegistries.find(f => f.foodType == foodRegistry.foodType)
 
-        this.saveDailyFoodRegistryInternally(foodRegistry)
+                if (food){
+                    console.log(foodRegistries.indexOf(food))
+                    foodRegistries.splice(foodRegistries.indexOf(food), 1)
+                }
+                foodRegistries.push(foodRegistry)
+                return transaction.set(ref, {foodRegistries})
+            })
+        })
+        //this.saveDailyFoodRegistryInternally(foodRegistry)
     }
 
     public async registerDay(): Promise<any> {
         const uid = (await this.fireAuth.currentUser).uid
         const dateString = this.utilsService.formatDate(this.dailyFoodRegistries[0].date)
-        // const ref = this.fireDAO.collection(`${uid}`).doc(dateString).ref
-        // return this.fireDAO.firestore.runTransaction((transaction) => {
-        //     return transaction.get(ref).then( snapshot => {
-        //         const foodRegistries = snapshot.get("foodRegistries") || []
-        //         const food = foodRegistries.find(f => f.foodType == foodRegistry.foodType)
-
-        //         if (food){
-        //             console.log(foodRegistries.indexOf(food))
-        //             foodRegistries.splice(foodRegistries.indexOf(food), 1)
-        //         }
-        //         foodRegistries.push(foodRegistry)
-        //         return transaction.set(ref, {foodRegistries})
-        //     })
-        // })
+    
         return this.fireDAO.collection(`${uid}`).doc(dateString).set({
             foodRegistries: this.dailyFoodRegistries
         })

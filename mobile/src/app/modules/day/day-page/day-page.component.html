@@ -1,6 +1,6 @@
 
 <ion-content style="--background: #f5f5f5;">
-  <ion-slides pager="true" [options]="slideOpts">
+  <ion-slides #slides pager="true" [options]="slideOpts">
     <ion-slide *ngFor="let type of foodTypes">
       <food-registry foodType={{type}}></food-registry>
     </ion-slide>

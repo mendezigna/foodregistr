@@ -1,6 +1,6 @@
 import { FoodRegistryComponent } from './../food-registry/food-registry.component';
-import { Component, OnInit, ViewChildren } from '@angular/core'
-import { ToastController } from '@ionic/angular';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core'
+import { IonSlides, ToastController } from '@ionic/angular';
 import { DayService } from '../day.service';
 @Component({
   selector: 'app-day-page',
@@ -10,7 +10,9 @@ import { DayService } from '../day.service';
 export class DayPageComponent implements OnInit {
 
   @ViewChildren(FoodRegistryComponent)
-  foodRegistries: FoodRegistryComponent[]
+  foodRegistries: QueryList<FoodRegistryComponent>
+
+  @ViewChild('slides') slider: IonSlides;
 
   foodTypes: string[]
 
@@ -18,10 +20,19 @@ export class DayPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.foodTypes = this.dayService.getFoodTypes()
-    this.dayService.resetDailyFoodRegistries(this.foodTypes)
+    //this.dayService.resetDailyFoodRegistries(this.foodTypes)
   }
 
   public async submit(): Promise<void> {
+    this.slider.getActiveIndex().then(index => {
+      this.foodRegistries.toArray()[index].submit().then( () => {
+        this.successMsg()
+      }).catch(err => {
+        console.error(err)
+        this.failedMsg()
+      })
+    })
+    /*
     for (const foodRegistry of this.foodRegistries) {
       await foodRegistry.submit()
     }
@@ -32,6 +43,7 @@ export class DayPageComponent implements OnInit {
         console.error(err)
         this.failedMsg()
       })
+    */
   }
 
   private async successMsg() {
