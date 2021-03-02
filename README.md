@@ -5,25 +5,26 @@
 
 ___
 # Roadmap
-* ~~Autenticación~~
-* ~~Menu Sidebar~~ Sección About y cambiar contraseña
-* Menu Tabs
-* Splash Screen
-* App Icon
-* Cambiar contraseña
-* Confirmar registro via mail
-* Validar contraseña mayor a 8 caracteres, letras y números
-* Cambiar a idioma Español
-* ~~Registrar una comida~~
-* ~~Eliminar imagen de una comida~~
-* Rotar imagen de una comida
-* Contador de caracteres de descripcion de comida
-* ~~Registrar comidas de un día~~
-* Ver comidas de un día específico
-* Ver todas las comidas de un día en una grilla
-* Ver comidas por semana
-* Ver comidas por mes
-* Abrir App en la comida correspondiente según la última registrada
+* [X] ~~Autenticación~~
+* [X] ~~Menu Sidebar~~ 
+* [ ] Sección About
+* [X] ~~Menu Tabs~~
+* [ ] Splash Screen
+* [ ] App Icon
+* [ ] Cambiar contraseña
+* [ ] Confirmar registro via mail
+* [ ] Validar contraseña mayor a 8 caracteres, letras y números
+* [ ] Cambiar a idioma Español
+* [X] ~~Registrar una comida~~
+* [X] ~~Eliminar imagen de una comida~~
+* [ ] Rotar imagen de una comida
+* [ ] Contador de caracteres de descripcion de comida
+* [X] ~~Registrar comidas de un día~~
+* [ ] Ver comidas de un día específico
+* [ ] Ver todas las comidas de un día en una grilla
+* [ ] Ver comidas por semana
+* [ ] Ver comidas por mes
+* [ ] Abrir App en la comida correspondiente según la última registrada
 
 
 # Futuro
