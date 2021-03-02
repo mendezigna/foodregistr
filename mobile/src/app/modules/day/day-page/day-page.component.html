@@ -1,15 +1,19 @@
 
 <ion-content style="--background: #f5f5f5;">
-  <ion-slides #slides pager="true" [options]="slideOpts">
+  <ion-slides #slides navigation="true">
     <ion-slide *ngFor="let type of foodTypes">
+      <div class="swiper-button-prev" (click)="prevSlide()" 
+        *ngIf="foodTypes.indexOf(type)"></div>
       <food-registry foodType={{type}}></food-registry>
+      <div class="swiper-button-next" (click)="nextSlide()" 
+        *ngIf="foodTypes.indexOf(type) !== foodTypes.length - 1"></div>
     </ion-slide>
   </ion-slides>
 </ion-content>
 
 <div class='btn-submit-container'>
   <ion-fab-button (click)="submit()" class='btn-submit'>
-    <ion-icon name="add-circle-outline"></ion-icon>
+    <ion-icon name="save-outline"></ion-icon>
   </ion-fab-button>
 </div>
 

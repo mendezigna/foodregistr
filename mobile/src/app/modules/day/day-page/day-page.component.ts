@@ -64,4 +64,12 @@ export class DayPageComponent implements OnInit {
     msg.present();
   }
 
+  public nextSlide(): void {
+    this.slider.slideNext();
+  }
+
+  public prevSlide(): void {
+    this.slider.slidePrev();
+  }
+
 }

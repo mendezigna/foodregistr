@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DayService } from '../../day/day.service';
 
 @Component({
   selector: 'tabs',
@@ -8,13 +7,19 @@ import { DayService } from '../../day/day.service';
 })
 export class TabsComponent {
 
-  constructor(private dayService: DayService) {}
-
   public goToToday() {
     console.log('WIP')
   }
 
   public goToWeek() {
+    console.log('WIP')
+  }
+
+  public goToMonth() {
+    console.log('WIP')
+  }
+
+  public openSidebar() {
     console.log('WIP')
   }
 

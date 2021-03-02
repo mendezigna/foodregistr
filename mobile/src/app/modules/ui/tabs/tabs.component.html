@@ -1,8 +1,7 @@
 <ion-footer class="tabs">
-  <div class='btn-tab' (click)="goToToday()">
-    <ion-icon name="calendar-clear-outline"></ion-icon> <div>Today</div>
-  </div>
-  <div class='btn-tab' (click)="goToWeek()">
-    <div>Week</div> <ion-icon name="calendar-outline"></ion-icon>
-  </div>
+  <tabs-btn type="Account"></tabs-btn>
+  <tabs-btn type="Month"></tabs-btn>
+  <div class="spacer"></div>
+  <tabs-btn type="Week"></tabs-btn>
+  <tabs-btn type="Today"></tabs-btn>
 </ion-footer>

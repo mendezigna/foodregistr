@@ -30,6 +30,7 @@
     "@ionic/angular": "^5.0.0",
     "@ionic/pwa-elements": "^3.0.2",
     "firebase": "^8.2.6",
+    "ionicons": "^5.5.0",
     "material-icons": "^0.5.2",
     "momentjs": "^2.0.0",
     "rxjs": "~6.5.5",
