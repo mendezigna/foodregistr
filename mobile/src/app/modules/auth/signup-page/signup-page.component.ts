@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '../../utils/store.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -22,7 +23,8 @@ export class SignupPageComponent {
   repeatPassword  = "";
 
 
-  constructor(private authService : AuthService, private router : Router) {}
+  constructor(private authService : AuthService, 
+    private router : Router, private store: Store) {}
 
   setPassword(event: any): void {
     this.password = event.target.value
@@ -44,9 +46,8 @@ export class SignupPageComponent {
     this.verifyField();
     if (this.allFieldsAreOK()) { 
       try {
-        const accessToken: string = await this.authService.signup(this.password, this.email, this.name)
-        localStorage.setItem('token', accessToken)
-        localStorage.setItem('username', this.name)
+        await this.authService.signup(this.password, this.email, this.name)
+        await this.authService.login(this.password, this.email)
         this.router.navigate(["../../day"]) 
       } catch(err) {
         switch(err.message){

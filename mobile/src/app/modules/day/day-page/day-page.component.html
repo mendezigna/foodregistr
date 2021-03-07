@@ -1,21 +1,16 @@
 
 <ion-content style="--background: #f5f5f5;">
   <ion-slides #slides navigation="true">
-    <ion-slide *ngFor="let type of foodTypes">
+    <ion-slide *ngFor="let registry of foodRegistries">
       <div class="swiper-button-prev" (click)="prevSlide()" 
-        *ngIf="foodTypes.indexOf(type)"></div>
-      <food-registry foodType={{type}}></food-registry>
+        *ngIf="foodTypes.indexOf(registry.foodType)"></div>
+      <food-registry 
+        [foodType]=registry.foodType
+        [foodRegistry]="registry"
+        [date]="dayDate"
+      ></food-registry>
       <div class="swiper-button-next" (click)="nextSlide()" 
-        *ngIf="foodTypes.indexOf(type) !== foodTypes.length - 1"></div>
+        *ngIf="foodTypes.indexOf(registry.foodType) !== foodTypes.length - 1"></div>
     </ion-slide>
   </ion-slides>
 </ion-content>
-
-<div class='btn-submit-container'>
-  <ion-fab-button (click)="submit()" class='btn-submit'>
-    <ion-icon name="save-outline"></ion-icon>
-  </ion-fab-button>
-</div>
-
-<tabs></tabs>
-<drawer></drawer>

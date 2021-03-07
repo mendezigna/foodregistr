@@ -1,7 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-import { DrawerComponent } from '../drawer/drawer.component';
-
 
 @Component({
   selector: 'tabs',
@@ -10,9 +8,9 @@ import { DrawerComponent } from '../drawer/drawer.component';
 })
 export class TabsComponent {
 
-  constructor(private menu : MenuController){
-
-  }
+  constructor(
+    private menu: MenuController
+    ) {}
 
   public goToToday() {
     console.log('WIP')
@@ -26,8 +24,8 @@ export class TabsComponent {
     console.log('WIP')
   }
 
-  public openSidebar() {
-    this.menu.open("first").then().catch(console.log)
+  public async openSidebar(): Promise<void> {
+    await this.menu.open()
   }
 
 }

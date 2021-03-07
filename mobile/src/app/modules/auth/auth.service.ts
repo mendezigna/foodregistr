@@ -1,12 +1,14 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore } from "@angular/fire/firestore";
+import { Store } from "../utils/store.service";
 
 @Injectable()
 export class AuthService {
     constructor(
         private fireAuth: AngularFireAuth,
-        private fireDAO: AngularFirestore
+        private fireDAO: AngularFirestore,
+        private store: Store
         ) {}
 
     public signup(password: string, email: string, name : string) : Promise<string> {
@@ -24,10 +26,11 @@ export class AuthService {
     public login(password: string, email: string) : any {
         return this.fireAuth.signInWithEmailAndPassword(email, password)
         .then((res) => { 
-            return {
-                token: (res.user.toJSON() as any).stsTokenManager.accessToken,
-                username: res.user.displayName
-            }
+            return this.store.setUserInfo(
+                res.user.displayName,
+                res.user.uid,
+                (res.user.toJSON() as any).stsTokenManager.accessToken,
+            )
         })
         .catch((err) => {
             throw new Error(err)

@@ -1,14 +1,21 @@
 import { AuthGuard } from './guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { TabsComponent } from './modules/ui/tabs/tabs.component';
 
 const routes: Routes = [
   {
-    path: 'day',
-    pathMatch:   'full',
-    canActivate: [AuthGuard],
-    loadChildren: () =>
-    import('./modules/day/day.module').then(m => m.DayModule)
+    path: 'tabs',
+    component: TabsComponent,
+    children: [
+      {
+        path: 'day',
+        pathMatch:   'prefix',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+        import('./modules/day/day.module').then(m => m.DayModule)
+      },
+    ]
   },
   {
     path: 'auth/login',
@@ -22,7 +29,7 @@ const routes: Routes = [
     loadChildren: () =>
     import('./modules/auth/signup.module').then(m => m.SignupModule)
   },
-  { path: '**', redirectTo: '/day', pathMatch: 'full' },
+  { path: '**', redirectTo: '/tabs/day', pathMatch: 'full' },
 ];
 @NgModule({
   imports: [

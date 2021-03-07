@@ -1,7 +1,22 @@
-<ion-footer class="tabs">
-  <tabs-btn type="Account" (click)="openSidebar()"></tabs-btn>
-  <tabs-btn type="Month"></tabs-btn>
-  <div class="spacer"></div>
-  <tabs-btn type="Week"></tabs-btn>
-  <tabs-btn type="Today"></tabs-btn>
-</ion-footer>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button (click)="openSidebar()">
+      <ion-icon name="person-circle-outline"></ion-icon>
+      <ion-label>Account</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="schedule">
+      <ion-icon name="calendar-number-outline"></ion-icon>
+      <ion-label>Month</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="schedule">
+      <ion-icon name="calendar-outline"></ion-icon>
+      <ion-label>Week</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="schedule">
+      <ion-icon name="today-outline"></ion-icon>
+      <ion-label>Day</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<drawer></drawer>

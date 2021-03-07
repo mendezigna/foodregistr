@@ -10,8 +10,14 @@ import { UiModule } from '../ui/ui.module';
 
 export const dayRoutes: Routes = [
   {
+    path:      ':date',
+    component: DayPageComponent
+  },
+  {
     path:      '',
-    component: DayPageComponent  }
+    component: DayPageComponent
+  },
+  
 ];
 
 @NgModule({

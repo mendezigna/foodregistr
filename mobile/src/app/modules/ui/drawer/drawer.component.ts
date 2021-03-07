@@ -1,33 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '../../utils/store.service';
 
 @Component({
   selector: 'drawer',
   templateUrl: './drawer.component.html',
   styleUrls: ['./drawer.component.scss'],
 })
-export class DrawerComponent implements OnInit {
-
+export class DrawerComponent {
   username : string
 
-  constructor(private router : Router) { 
-    this.username = localStorage.getItem('username')
+  constructor(
+    private router : Router,
+    private store: Store) { 
+    this.username = this.store.get('username')
   }
 
-
-  ngOnInit() {
-  }
-
-  logOut(): void{
-    localStorage.clear()
+  logOut(): void {
+    this.store.revokeSession()
     this.router.navigate(['/auth/login'])
   }
 
-  changePassword(): void{
+  changePassword(): void {
     console.log("change password")
   }
 
-  about(): void{
+  about(): void {
     console.log("about")
   }
 

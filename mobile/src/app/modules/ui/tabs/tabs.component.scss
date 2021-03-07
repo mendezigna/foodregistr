@@ -1,22 +1,7 @@
-.tabs {
-    background-color: white;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    align-content: center;
-    box-shadow: 0px -5px 30px -16px rgb(129, 129, 129);
-    padding: 0.2em 0;
-}
-
-tabs-btn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 0.7rem;
-    text-align: center;
-}
-
 .spacer {
-    width: 2em;
+    width: 4em;
+}
+
+ion-tab-button {
+    color: black;
 }
