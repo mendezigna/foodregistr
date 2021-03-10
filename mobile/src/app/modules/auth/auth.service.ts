@@ -44,4 +44,9 @@ export class AuthService {
             photoURL: user.providerData[0].photoURL
         })
     }
+
+    public async reauthenticate(): Promise<void> {
+        const newToken  = await (await this.fireAuth.currentUser).getIdToken(true)
+        this.store.set('token', newToken)
+    }
 }

@@ -15,6 +15,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { DayService } from './modules/day/day.service';
+import { AuthService } from './modules/auth/auth.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,7 +37,8 @@ import { DayService } from './modules/day/day.service';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService
+    JwtHelperService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
