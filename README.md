@@ -20,7 +20,7 @@ ___
 * [ ] Rotar imagen de una comida
 * [ ] Contador de caracteres de descripcion de comida
 * [X] ~~Registrar comidas de un día~~
-* [ ] Ver comidas de un día específico
+* [X] ~~Ver comidas de un día específico~~
 * [ ] Ver todas las comidas de un día en una grilla
 * [ ] Ver comidas por semana
 * [ ] Ver comidas por mes
