@@ -61,7 +61,7 @@ export class DayService {
     } 
     
     private validateFoodRegistryNotEmpty(foodRegistry: FoodRegistry, blobUrl: string) {
-        if (foodRegistry.description == '' || blobUrl == '') {
+        if (foodRegistry.description == '' && blobUrl == '') {
             throw new Error('No food description or image provided.')
         }
     }
