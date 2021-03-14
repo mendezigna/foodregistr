@@ -6,16 +6,16 @@
 
 <div class="date-container">
   <ion-icon 
-    name="chevron-back-circle-outline" 
-    class="change-day-btn"
-    (click)="navigateToPrevDay()"
+      name="chevron-back-circle-outline" 
+      class="change-day-btn"
+      (click)="navigateToPrevDay()"
   ></ion-icon>
   <div class="date">{{date}}</div>
   <ion-icon 
-    *ngIf="hasNextDay"
-    name="chevron-forward-circle-outline" 
-    class="change-day-btn"
-    (click)="navigateToNextDay()"
+      *ngIf="hasNextDay"
+      name="chevron-forward-circle-outline" 
+      class="change-day-btn"
+      (click)="navigateToNextDay()"
   ></ion-icon>
 </div>
 

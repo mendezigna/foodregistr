@@ -4,15 +4,15 @@
       <ion-icon name="person-circle-outline"></ion-icon>
       <ion-label>Account</ion-label>
     </ion-tab-button>
-    <ion-tab-button tab="schedule">
+    <ion-tab-button (click)="goToMonth()">
       <ion-icon name="calendar-number-outline"></ion-icon>
       <ion-label>Month</ion-label>
     </ion-tab-button>
-    <ion-tab-button tab="schedule">
+    <ion-tab-button (click)="goToWeek()">
       <ion-icon name="calendar-outline"></ion-icon>
       <ion-label>Week</ion-label>
     </ion-tab-button>
-    <ion-tab-button tab="schedule">
+    <ion-tab-button (click)="goToToday()">
       <ion-icon name="today-outline"></ion-icon>
       <ion-label>Day</ion-label>
     </ion-tab-button>

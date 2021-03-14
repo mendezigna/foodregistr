@@ -37,6 +37,31 @@ ion-card {
     transform: scale(0.9, 0.9);
 }
 
+.date {
+    background-color: white;
+    padding: 0.2em 1em;
+    border-radius: 55px;
+    margin: 0 1em;
+    box-shadow: 1px 5px 69px -7px rgb(0 0 0 / 75%);
+}
+
+.date-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.change-day-btn {
+    background: white;
+    transform: scale(2, 2);
+    border-radius: 100%;
+    display: block;
+    box-shadow: 0px 0px 11px -4px rgb(0 0 0 / 75%);
+}
+
 .badge-photo-remove {
     width: 1.9em;
     height: 1.9em;
@@ -78,28 +103,7 @@ ion-textarea {
     text-align: left;
 }
 
-.change-day-btn {
-    background: white;
-    transform: scale(2, 2);
-    border-radius: 100%;
-    display: block;
-    box-shadow: 0px 0px 11px -4px rgb(0 0 0 / 75%);
-}
 
-.date {
-    background-color: white;
-    padding: 0.2em 1em;
-    border-radius: 55px;
-    margin: 0 1em;
-    box-shadow: 1px 5px 69px -7px rgb(0 0 0 / 75%);
-}
-
-.date-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0.5em;
-}
 
 ion-fab {
     transform: scale(1.1, 1.1);

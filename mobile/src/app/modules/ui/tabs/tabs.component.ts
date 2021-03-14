@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { UtilsService } from '../../utils/utils.service';
 
 @Component({
   selector: 'tabs',
@@ -9,11 +11,14 @@ import { MenuController } from '@ionic/angular';
 export class TabsComponent {
 
   constructor(
-    private menu: MenuController
+    private menu: MenuController,
+    private router: Router,
+    private utilsService: UtilsService
     ) {}
 
   public goToToday() {
-    console.log('WIP')
+    const date = this.utilsService.formatDate(new Date())
+    this.router.navigate(["tabs/day", date])
   }
 
   public goToWeek() {

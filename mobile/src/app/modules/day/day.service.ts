@@ -48,7 +48,11 @@ export class DayService {
         })
     }
     
-    public navigateToDay(date: string): void {
+    public navigateToDayRegistry(date: string, index: number): void {
+        this.router.navigate(['tabs/day/register', date], { queryParams: { index } })
+    }
+
+    public navigateToDayView(date: string): void{
         this.router.navigate(['tabs/day', date])
     }
     
@@ -60,6 +64,21 @@ export class DayService {
         
     } 
     
+    public mapPreviousRegistries(prevRegistries: FoodRegistry[]): FoodRegistry[] {
+        const mappedRegistries: any[] = []
+        for (const type of this.getFoodTypes()) {
+          const aRegistry = 
+          prevRegistries
+          ? prevRegistries.find(registry => registry.foodType === type)
+          : undefined
+  
+          aRegistry 
+          ? mappedRegistries.push(aRegistry) 
+          : mappedRegistries.push({foodType: type})
+        }
+      return mappedRegistries
+    }
+
     private validateFoodRegistryNotEmpty(foodRegistry: FoodRegistry, blobUrl: string) {
         if (foodRegistry.description == '' && blobUrl == '') {
             throw new Error('No food description or image provided.')

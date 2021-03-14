@@ -36,4 +36,16 @@ export class UtilsService {
   public decapitalize(str: string): string {
     return str[0].toLowerCase() + str.slice(1);
   }
+
+  public getNextDay(dateString: string) : string{
+    const date = this.stringToDate(dateString)
+    date.setDate(date.getDate() + 1)
+    return this.formatDate(date)
+  }
+
+  public getPrevDay(dateString: string) : string{
+    const date = this.stringToDate(dateString)
+    date.setDate(date.getDate() - 1)
+    return this.formatDate(date)
+  }
 }

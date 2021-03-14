@@ -7,7 +7,6 @@
       <food-registry 
         [foodType]=registry.foodType
         [foodRegistry]="registry"
-        [date]="dayDate"
       ></food-registry>
       <div class="swiper-button-next" (click)="nextSlide()" 
         *ngIf="foodTypes.indexOf(registry.foodType) !== foodTypes.length - 1"></div>

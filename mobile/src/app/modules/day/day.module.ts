@@ -7,22 +7,33 @@ import { DayPageComponent } from "./day-page/day-page.component";
 import { DayService } from "./day.service";
 import { FoodRegistryComponent } from "./food-registry/food-registry.component";
 import { UiModule } from '../ui/ui.module';
+import { DayViewPageComponent } from './day-view-page/day-view-page.component';
+import { FoodViewComponent } from './food-view/food-view.component';
 
 export const dayRoutes: Routes = [
   {
-    path:      ':date',
+    path:      'register/:date',
     component: DayPageComponent
   },
   {
+    path:      'register',
+    component: DayPageComponent,
+    pathMatch: 'exact'
+  },
+  {
+    path:      ':date',
+    component: DayViewPageComponent
+  },
+  {
     path:      '',
-    component: DayPageComponent
+    component: DayViewPageComponent
   },
   
 ];
 
 @NgModule({
-    declarations: [FoodRegistryComponent, DayPageComponent],
-    exports: [FoodRegistryComponent, DayPageComponent],
+    declarations: [FoodRegistryComponent, DayPageComponent, DayViewPageComponent, FoodViewComponent],
+    exports: [FoodRegistryComponent, DayPageComponent, DayViewPageComponent],
     imports: [RouterModule.forChild(dayRoutes), CommonModule, ReactiveFormsModule, IonicModule, UiModule],
     providers: [DayService]
   })
