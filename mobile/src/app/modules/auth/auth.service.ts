@@ -9,7 +9,14 @@ export class AuthService {
         private fireAuth: AngularFireAuth,
         private fireDAO: AngularFirestore,
         private store: Store
-        ) {}
+        ) {
+            this.fireAuth.onIdTokenChanged(async(user) => {
+                if (user) {
+                    const reauthenticatedToken = await user.getIdToken()
+                    this.store.set('token', reauthenticatedToken)
+                }
+            })
+        }
 
     public signup(password: string, email: string, name : string) : Promise<string> {
         return this.fireAuth.createUserWithEmailAndPassword(email, password)
@@ -25,16 +32,18 @@ export class AuthService {
 
     public login(password: string, email: string) : any {
         return this.fireAuth.signInWithEmailAndPassword(email, password)
-        .then((res) => { 
-            return this.store.setUserInfo(
-                res.user.displayName,
-                res.user.uid,
-                (res.user.toJSON() as any).stsTokenManager.accessToken,
-            )
-        })
+        .then(async(res) => this.saveUserDataLocally(res))
         .catch((err) => {
             throw new Error(err)
         })
+    }
+
+    private async saveUserDataLocally(data) {
+        return this.store.setUserInfo(
+            data.user.displayName,
+            data.user.uid,
+            (data.user.toJSON() as any).stsTokenManager.accessToken,
+        )
     }
 
     private createUser(user, displayName: string) {
@@ -45,8 +54,12 @@ export class AuthService {
         })
     }
 
-    public async reauthenticate(): Promise<void> {
-        const newToken  = await (await this.fireAuth.currentUser).getIdToken(true)
-        this.store.set('token', newToken)
+    public deauthenticate(): void {
+        this.store.revokeSession()
+        this.fireAuth.signOut()
+    }
+
+    public getUserToken(): string {
+        return this.store.get('token')
     }
 }
