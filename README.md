@@ -21,7 +21,7 @@ ___
 * [ ] Contador de caracteres de descripcion de comida
 * [X] ~~Registrar comidas de un día~~
 * [X] ~~Ver comidas de un día específico~~
-* [ ] Ver todas las comidas de un día en una grilla
+* [X] ~~Ver todas las comidas de un día en una grilla~~
 * [ ] Ver comidas por semana
 * [ ] Ver comidas por mes
 * [ ] Abrir App en la comida correspondiente según la última registrada
