@@ -10,7 +10,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "android": "yarn build && yarn cap copy android"
+    "android": "yarn build && yarn cap copy android",
+    "android:resources": "cordova-res android && node scripts/resources.js"
   },
   "private": true,
   "dependencies": {
