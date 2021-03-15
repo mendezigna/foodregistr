@@ -9,8 +9,8 @@ ___
 * [X] ~~Menu Sidebar~~ 
 * [ ] Sección About
 * [X] ~~Menu Tabs~~
-* [ ] Splash Screen
-* [ ] App Icon
+* [X] ~~Splash Screen~~
+* [X] ~~App Icon~~
 * [ ] Cambiar contraseña
 * [ ] Confirmar registro via mail
 * [ ] Validar contraseña mayor a 8 caracteres, letras y números
