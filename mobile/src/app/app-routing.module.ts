@@ -15,6 +15,12 @@ const routes: Routes = [
         loadChildren: () =>
         import('./modules/day/day.module').then(m => m.DayModule)
       },
+      {
+        path: 'month',
+        pathMatch: 'prefix',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./modules/month/month.module').then(m => m.MonthModule)
+      }
     ]
   },
   {

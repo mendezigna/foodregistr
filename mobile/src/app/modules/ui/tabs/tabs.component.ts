@@ -18,7 +18,7 @@ export class TabsComponent {
 
   public goToToday() {
     const date = this.utilsService.formatDate(new Date())
-    this.router.navigate(["tabs/day", date])
+    this.router.navigate(["tabs/day"])
   }
 
   public goToWeek() {
@@ -26,7 +26,8 @@ export class TabsComponent {
   }
 
   public goToMonth() {
-    console.log('WIP')
+    this.router.navigate(["tabs/month"])
+
   }
 
   public async openSidebar(): Promise<void> {
