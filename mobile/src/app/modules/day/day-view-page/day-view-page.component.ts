@@ -23,6 +23,7 @@ export class DayViewPageComponent implements OnInit, ViewWillEnter {
   constructor(private route: ActivatedRoute, private utilsService : UtilsService, private dayService: DayService) {}
   
   ionViewWillEnter(): void {
+    this.dayDate = this.route.snapshot.paramMap.get("date") || this.utilsService.formatDate(new Date())
     this.hasNextDay = this.utilsService.formatDate(new Date()) > this.dayDate
     this.dayService.getFoodRegistriesFromDay(this.dayDate).then( (data: any) => {
       this.foodRegistries = this.dayService.mapPreviousRegistries(data)
@@ -31,7 +32,6 @@ export class DayViewPageComponent implements OnInit, ViewWillEnter {
 
   ngOnInit(): void {
     this.foodTypes = this.dayService.getFoodTypes()
-    this.dayDate = this.route.snapshot.paramMap.get("date") || this.utilsService.formatDate(new Date())
   }
 
 
