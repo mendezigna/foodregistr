@@ -23,7 +23,7 @@ ___
 * [X] ~~Ver comidas de un día específico~~
 * [X] ~~Ver todas las comidas de un día en una grilla~~
 * [ ] Ver comidas por semana
-* [ ] Ver comidas por mes
+* [X] ~~Ver comidas por mes~~
 * [ ] Abrir App en la comida correspondiente según la última registrada
 
 
