@@ -24,16 +24,10 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'auth/login',
-    pathMatch: 'full',
+    path: 'auth',
+    pathMatch: 'prefix',
     loadChildren: () =>
-    import('./modules/auth/login.module').then(m => m.LoginModule)
-  },
-  {
-    path: 'auth/signup',
-    pathMatch: 'full',
-    loadChildren: () =>
-    import('./modules/auth/signup.module').then(m => m.SignupModule)
+    import('./modules/auth/auth.module').then(m => m.AuthModule)
   },
   { path: '**', redirectTo: '/tabs/day', pathMatch: 'full' },
 ];

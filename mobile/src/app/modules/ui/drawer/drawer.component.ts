@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { AuthService } from '../../auth/auth.service';
 import { Store } from '../../utils/store.service';
 
@@ -14,6 +15,7 @@ export class DrawerComponent {
   constructor(
     private router : Router,
     private store: Store,
+    private alertController: AlertController,
     private authService: AuthService) { 
     this.username = this.store.get('username')
   }
@@ -24,11 +26,42 @@ export class DrawerComponent {
   }
 
   changePassword(): void {
-    console.log("change password")
+    this.router.navigate(['auth/change-password'])
   }
 
-  about(): void {
-    console.log("about")
+  async about(): Promise<void> {
+    const alert = await this.alertController.create({
+      cssClass: 'about-alert',
+      header: 'About',
+      subHeader: 'version 1.0',
+      message: 'Hi!',
+      buttons: [
+        {
+          text: '@leodelgadodev',
+          cssClass: 'about-button',
+          handler: () => {
+            window.open("https://github.com/leodelgadodev",'_system')
+          }
+        },
+        {
+          text: '@mendezigna',
+          cssClass: 'about-button',
+          handler: () => {
+            window.open("https://github.com/mendezigna", '_system')
+          }
+        },
+        {
+          text: '@AntonellaDatri',
+          cssClass: 'about-button',
+          handler: () => {
+            window.open("https://github.com/AntonellaDatri", '_system')
+          }
+        },
+        'Ok!'
+      ]
+    });
+
+    await alert.present();
   }
 
 }

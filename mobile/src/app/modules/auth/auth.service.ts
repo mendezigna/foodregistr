@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore } from "@angular/fire/firestore";
+import firebase from 'firebase/app'
 import { Store } from "../utils/store.service";
 
 @Injectable()
 export class AuthService {
+    
     constructor(
         private fireAuth: AngularFireAuth,
         private fireDAO: AngularFirestore,
@@ -42,6 +44,7 @@ export class AuthService {
         return this.store.setUserInfo(
             data.user.displayName,
             data.user.uid,
+            data.user.email,
             (data.user.toJSON() as any).stsTokenManager.accessToken,
         )
     }
@@ -57,6 +60,16 @@ export class AuthService {
     public deauthenticate(): void {
         this.store.revokeSession()
         this.fireAuth.signOut()
+    }
+
+    public updatePassword(oldPassword: string, newPassword: string): Promise<any>{
+        return this.fireAuth.currentUser.then(user => {
+            const credentials = firebase.auth.EmailAuthProvider.credential(this.store.get('email'), oldPassword)
+            return user.reauthenticateWithCredential(credentials).then(res => {
+                return res.user.updatePassword(newPassword)
+            })
+
+        })
     }
 
     public getUserToken(): string {

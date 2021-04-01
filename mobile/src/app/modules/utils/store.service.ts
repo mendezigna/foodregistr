@@ -21,9 +21,10 @@ export class Store {
   }
 
   public async setUserInfo(username: string, 
-    uid: string, token: string): Promise<void> {
+    uid: string,email: string, token: string): Promise<void> {
     await this.set('username', username)
     await this.set('uid', uid)
+    await this.set('email', email)
     await this.set('token', token)
     return this.getUserInfo()
   }
@@ -31,6 +32,8 @@ export class Store {
   public revokeSession(): void {
       localStorage.removeItem('username')
       localStorage.removeItem('uid')
+      localStorage.removeItem('email')
       localStorage.removeItem('token')
+
   }
 }
