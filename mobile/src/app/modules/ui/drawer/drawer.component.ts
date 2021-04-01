@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 import { Store } from '../../utils/store.service';
 
 @Component({
@@ -12,12 +13,13 @@ export class DrawerComponent {
 
   constructor(
     private router : Router,
-    private store: Store) { 
+    private store: Store,
+    private authService: AuthService) { 
     this.username = this.store.get('username')
   }
 
   logOut(): void {
-    this.store.revokeSession()
+    this.authService.deauthenticate()
     this.router.navigate(['/auth/login'])
   }
 
