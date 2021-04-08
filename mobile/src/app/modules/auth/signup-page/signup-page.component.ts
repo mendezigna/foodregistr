@@ -73,7 +73,7 @@ export class SignupPageComponent {
   private verifyField(): void {
     this.showNullEmailErr = this.email == ""
     this.showRepeatPassErr = this.repeatPassword == ""
-    this.showShortPassErr = this.password == ""
+    this.showShortPassErr = this.password.length < 8
     this.showNullNameErr = this.name == ""
     this.showMatchPassErr = (!this.showRepeatPassErr) && this.repeatPassword != this.password
 
