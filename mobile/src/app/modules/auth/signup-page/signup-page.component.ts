@@ -28,18 +28,24 @@ export class SignupPageComponent {
 
   setPassword(event: any): void {
     this.password = event.target.value
+    this.showShortPassErr = false
   }
 
   setRepeatPassword(event : any): void {
     this.repeatPassword = event.target.value
+    this.showRepeatPassErr = false
+    this.showMatchPassErr = false
   }
 
   setEmail(event): void {
     this.email = event.target.value
+    this.showRegisteredEmailErr = false
+    this.showNullEmailErr
   }
 
   setName(event): void {
     this.name = event.target.value
+    this.showNullNameErr = false
   }
 
   async onSubmit(): Promise<void> {    
@@ -47,8 +53,7 @@ export class SignupPageComponent {
     if (this.allFieldsAreOK()) { 
       try {
         await this.authService.signup(this.password, this.email, this.name)
-        await this.authService.login(this.password, this.email)
-        this.router.navigate(["tabs/day/register"]) 
+        
       } catch(err) {
         switch(err.message){
           case "Error: The email address is badly formatted.":

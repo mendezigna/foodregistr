@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginPageComponent {
   invalidFields = false
+  emailVerify = false
   password  = "";
   email  = "";
 
@@ -30,7 +31,11 @@ export class LoginPageComponent {
       await this.authService.login(this.password, this.email)
       this.router.navigate(["tabs/day/register"])
     } catch (err) {
-      this.invalidFields = true
+      if(err.message == "Error: Please verify your email address."){
+        this.emailVerify = true
+      }else {
+        this.invalidFields = true
+      }
     }
   }
 }

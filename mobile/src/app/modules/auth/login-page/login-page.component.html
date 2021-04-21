@@ -13,6 +13,7 @@
             <password-input-field placeholder="Password" (keyup)="setPassword($event)"></password-input-field>
             <div class="fieldError">
               <ion-label *ngIf="invalidFields">The password is invalid or the user does not have a password.</ion-label>
+              <ion-label *ngIf="emailVerify">Please verify your email address.</ion-label>
             </div>
           </div>
         </div>
