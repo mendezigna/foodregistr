@@ -7,24 +7,24 @@ ___
 # Roadmap
 * [X] ~~Autenticación~~
 * [X] ~~Menu Sidebar~~ 
-* [X] Sección About
+* [X] ~~Sección About~~
 * [X] ~~Menu Tabs~~
 * [X] ~~Splash Screen~~
 * [X] ~~App Icon~~
-* [X] Cambiar contraseña
-* [ ] Confirmar registro via mail
-* [ ] Validar contraseña mayor a 8 caracteres, letras y números
+* [X] ~~Cambiar contraseña~~
+* [X] ~~Confirmar registro via mail~~
+* [ ] Validar contraseña mayor a 8 caracteres
+* [ ] Validar contraseña tiene letras y números
 * [ ] Cambiar a idioma Español
 * [X] ~~Registrar una comida~~
 * [X] ~~Eliminar imagen de una comida~~
-* [ ] Rotar imagen de una comida
-* [X] Contador de caracteres de descripcion de comida
+* [X] ~~Contador de caracteres de descripcion de comida~~
 * [X] ~~Registrar comidas de un día~~
 * [X] ~~Ver comidas de un día específico~~
 * [X] ~~Ver todas las comidas de un día en una grilla~~
-* [X] Ver comidas por semana
+* [X] ~~Ver comidas por semana~~
 * [X] ~~Ver comidas por mes~~
-* [ ] Abrir App en la comida correspondiente según la última registrada
+* [X] ~~Abrir App en la comida correspondiente según la última registrada~~
 
 
 # Futuro
