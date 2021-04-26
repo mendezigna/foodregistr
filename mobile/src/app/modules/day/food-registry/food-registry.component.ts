@@ -106,12 +106,11 @@ export class FoodRegistryComponent implements OnInit, AfterViewInit {
   public submit(): void {
     const foodRegistry: FoodRegistry = {
       description: this.description,
-      date: this.date,
       foodType: this.utilsService.decapitalize(this.foodType),
       imageId: this.foodRegistry.imageId || '',
     }
 
-    this.dayService.registerFood(foodRegistry, this.imageBlobUrl)
+    this.dayService.registerFood(foodRegistry, this.imageBlobUrl, this.date)
       .then(() => this.successMsg())
       .catch(err => {
         console.error(err)

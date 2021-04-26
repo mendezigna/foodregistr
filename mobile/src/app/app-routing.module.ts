@@ -2,6 +2,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { TabsComponent } from './modules/ui/tabs/tabs.component';
+import { weekRoutes } from './modules/week/week.module';
 
 const routes: Routes = [
   {
@@ -20,6 +21,12 @@ const routes: Routes = [
         pathMatch: 'prefix',
         canActivate: [AuthGuard],
         loadChildren: () => import('./modules/month/month.module').then(m => m.MonthModule)
+      },
+      {
+        path: 'week',
+        pathMatch: 'prefix',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./modules/week/week.module').then(m => m.WeekModule)
       }
     ]
   },

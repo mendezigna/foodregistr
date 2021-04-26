@@ -1,0 +1,14 @@
+<ion-button (click)="navigateToDay()" [disabled]="hasNextDay()" class="week-day">
+    <div class="day-container">
+        {{day}}
+    </div>
+    <div class="foods-container">
+        <div class="food" *ngFor="let foodtype of foodTypes; let i = index">
+            <ion-button class="food-content" fill="clear" [disabled]="!isRegistered(foodtype)"> 
+                <ion-icon src="/assets/icon/registered.svg" size="small" slot="start" *ngIf="isRegistered(foodtype)"></ion-icon>
+                <ion-icon src="/assets/icon/unregistered.svg" size="small" slot="start" *ngIf="!isRegistered(foodtype)"></ion-icon>
+                {{foodtype}}
+            </ion-button>
+        </div>
+    </div>
+</ion-button>

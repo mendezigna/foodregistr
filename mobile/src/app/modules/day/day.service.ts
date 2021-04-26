@@ -26,15 +26,14 @@ export class DayService {
         return this.fireStorage.ref(imageId).getDownloadURL().toPromise()
     }
     
-    public async registerFood(foodRegistry: FoodRegistry, blobUrl: string): Promise<any> {
+    public async registerFood(foodRegistry: FoodRegistry, blobUrl: string, date: string): Promise<any> {
         this.validateFoodRegistryNotEmpty(foodRegistry, blobUrl)
         const uid = (await this.fireAuth.currentUser).uid
-
         if (blobUrl) {
-            foodRegistry.imageId = await this.saveImageFromBlob(uid, foodRegistry.date, blobUrl, foodRegistry.foodType)
+            foodRegistry.imageId = await this.saveImageFromBlob(uid, date, blobUrl, foodRegistry.foodType)
         }
-
-        const ref = this.fireDAO.collection(`${uid}`).doc(foodRegistry.date).ref
+        
+        const ref = this.fireDAO.collection(`${uid}`).doc(date).ref
         return this.fireDAO.firestore.runTransaction(async (transaction) => {
             const foodRegistries = (await transaction.get(ref)).get("foodRegistries") || []
             const food = foodRegistries.find(f => f.foodType == foodRegistry.foodType)
@@ -44,7 +43,7 @@ export class DayService {
             }
 
             foodRegistries.push(foodRegistry)
-            return transaction.set(ref, {foodRegistries})
+            return transaction.set(ref, {foodRegistries, date})
         })
     }
     

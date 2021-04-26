@@ -71,4 +71,18 @@ export class UtilsService {
     return days;
   }
 
+  public getFirstDayOfWeek(date: Date) : Date{
+    const temp = new Date(date)
+    temp.setDate(temp.getDate() - 1)
+    const dayOfWeek = temp.getDay()
+    date.setDate(date.getDate() - dayOfWeek)
+
+    return date
+  }
+
+  public getLastDayOfWeek(date: Date) : Date{
+    date.setDate(date.getDate() + (7 - date.getDay()))
+    return date
+  }
+
 }
