@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './day-page.component.html',
   styleUrls: ['./day-page.component.scss'],
 })
-export class DayPageComponent implements OnInit, AfterViewInit {
+export class DayPageComponent implements OnInit {
 
   @ViewChildren(FoodRegistryComponent)
   foodRegistryComponents: QueryList<FoodRegistryComponent>
@@ -23,6 +23,7 @@ export class DayPageComponent implements OnInit, AfterViewInit {
 
   dayDate: string
 
+
   constructor(
     private dayService: DayService,
     private utilsService: UtilsService,
@@ -30,17 +31,15 @@ export class DayPageComponent implements OnInit, AfterViewInit {
       
     }
 
-  ngAfterViewInit(){
-    const index = this.route.snapshot.queryParamMap.get("index") as unknown as number
-    this.slider.slideTo(index || 0)
-  }
 
-  ngOnInit(): void {
+  ngOnInit() {
     //this.dayService.resetDailyFoodRegistries(this.foodTypes)
     this.foodTypes = this.dayService.getFoodTypes()
     this.dayDate = this.route.snapshot.paramMap.get("date") || this.utilsService.formatDate(new Date())
     this.getFoodRegistriesFromToday().then((data: any) => {
       this.foodRegistries = this.dayService.mapPreviousRegistries(data)
+      const index = this.route.snapshot.queryParamMap.get("index") as unknown as number
+      this.slider.slideTo(index || this.getNextFoodIndex() || 0)
     })
     
   }
@@ -85,6 +84,12 @@ export class DayPageComponent implements OnInit, AfterViewInit {
     return this.foodRegistries.find((registry) => {
       return registry.foodType === foodType
     })
+  }
+
+  private getNextFoodIndex(): number{
+    const foodsRegistered = this.foodRegistries.filter(foodRegistry => foodRegistry.imageId || foodRegistry.description )
+    const nextFoodIndex = foodsRegistered.length == 0 ? 0 : this.foodRegistries.indexOf(foodsRegistered[foodsRegistered.length - 1]) + 1
+    return nextFoodIndex > 3 ? 3 : nextFoodIndex 
   }
 
 }

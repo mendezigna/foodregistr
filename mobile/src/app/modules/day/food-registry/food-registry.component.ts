@@ -119,6 +119,10 @@ export class FoodRegistryComponent implements OnInit, AfterViewInit {
       })
   }
 
+  public isRegistered() : boolean{
+    return this.description == "" && this.getImage() == ""
+  }
+
 
   private async successMsg() {
     const msg = await this.toast.create({

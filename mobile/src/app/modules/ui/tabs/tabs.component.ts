@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { UtilsService } from '../../utils/utils.service';
@@ -15,6 +15,8 @@ export class TabsComponent {
     private router: Router,
     private utilsService: UtilsService
     ) {}
+  
+
 
   public goToToday() {
     const date = this.utilsService.formatDate(new Date())

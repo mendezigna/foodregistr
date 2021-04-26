@@ -29,7 +29,7 @@ export class LoginPageComponent {
   async onSubmit(): Promise<void> {
     try {
       await this.authService.login(this.password, this.email)
-      this.router.navigate(["tabs/day/register"])
+      this.router.navigate(["tabs/day"])
     } catch (err) {
       if(err.message == "Error: Please verify your email address."){
         this.emailVerify = true
