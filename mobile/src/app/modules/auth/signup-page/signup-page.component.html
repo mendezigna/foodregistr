@@ -22,6 +22,7 @@
         <div class="field">
           <password-input-field placeholder="Password" (keyup)="setPassword($event)"></password-input-field>
           <div class="fieldError">
+            <ion-label *ngIf="showAlphaNumericErr">Password should be a combination of letters and numbers.</ion-label> <br *ngIf="showAlphaNumericErr">
             <ion-label *ngIf="showShortPassErr">Password must be at least 8 characters.</ion-label>
           </div>
         </div>

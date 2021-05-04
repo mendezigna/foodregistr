@@ -42,7 +42,7 @@ export class AuthService {
             toast.present();
           }
 
-    public signup(password: string, email: string, name : string) : Promise<string> {
+    public signup(password: string, email: string, name : string) : Promise<void> {
         return this.fireAuth.createUserWithEmailAndPassword(email, password).then((res) => {
             res.user.updateProfile({displayName : name})
             
@@ -51,8 +51,6 @@ export class AuthService {
             })
             
             this.createUser(res.user.toJSON(), name)
-            return (res.user.toJSON() as any).stsTokenManager.accessToken
-            
         })
         .catch((err) => {
             throw new Error(err)
@@ -63,7 +61,7 @@ export class AuthService {
         return this.fireAuth.signInWithEmailAndPassword(email, password)
         .then(async(res) => {
             if(!res.user.emailVerified){
-                throw new Error("Please verify your email address.")
+                throw Error("Please verify your email address.")
             }
             this.saveUserDataLocally(res)
         })

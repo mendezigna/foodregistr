@@ -12,6 +12,7 @@ import { AuthService } from "../auth.service";
 export class ChangePasswordPageComponent implements OnInit{
 
     private changePasswordForm : FormGroup;
+    
 
     constructor( private router: Router,private formBuilder: FormBuilder, private authService: AuthService, private toast: ToastController) {
       
@@ -23,7 +24,7 @@ export class ChangePasswordPageComponent implements OnInit{
             repeatPassword: new FormControl('', [Validators.required]),
             newPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
         }, {
-            validators: this.mustMatch
+            validators: [this.mustMatch,this.mustContainNumbersAndLetters]
         });
     }
 
@@ -70,6 +71,15 @@ export class ChangePasswordPageComponent implements OnInit{
         }
         
     }
-
+    mustContainNumbersAndLetters(c: AbstractControl) : {invalid: boolean}{
+        
+        const letters = /[a-zA-Z]/g;
+        const numbers = /[0-9]/g;
+        const newpassword = c.get('newPassword')
+        if(!letters.test(newpassword.value) || !numbers.test(newpassword.value)){
+            newpassword.setErrors({mustContainLetterAndNumber : true})
+            return {invalid: true}
+        }
+    }
 }
 
