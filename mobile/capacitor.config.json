@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.food",
-  "appName": "FoodRegistr",
+  "appName": "Food Registr",
   "bundledWebRuntime": false,
   "npmClient": "yarn",
   "webDir": "www",
