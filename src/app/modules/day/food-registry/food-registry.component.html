@@ -1,0 +1,67 @@
+<ion-card class="food-type">
+  <ion-card-content>
+    <h1>{{ foodType }}</h1>
+  </ion-card-content>
+</ion-card>
+
+<div class="date-container">
+  <ion-icon
+    name="chevron-back-circle-outline"
+    class="change-day-btn"
+    (click)="navigateToPrevDay()"
+  ></ion-icon>
+  <div class="date">{{ date }}</div>
+  <ion-icon
+    *ngIf="hasNextDay"
+    name="chevron-forward-circle-outline"
+    class="change-day-btn"
+    (click)="navigateToNextDay()"
+  ></ion-icon>
+</div>
+
+<ion-card class="food-photo" (click)="toggleUploadPhoto()">
+  <ion-card-content>
+    <div
+      class="photo-container photo-frame"
+      *ngIf="!image && !imageBlobUrl; else photo"
+    >
+      <ion-icon name="camera-outline" class="photo-icon"></ion-icon>
+      <p class="ion-text-center photo-p">
+        Click here to upload your <br />{{ foodType }}
+      </p>
+    </div>
+    <ng-template #photo>
+      <div class="photo-container">
+        <div class="badge-photo-remove">
+          <ion-icon
+            name="close-circle-outline"
+            class="badge-photo-remove-icon"
+            (click)="removePhoto()"
+          ></ion-icon>
+        </div>
+        <ion-img [src]="getImage()" class="photo"> </ion-img>
+      </div>
+    </ng-template>
+  </ion-card-content>
+</ion-card>
+
+<ion-card class="food-description">
+  <ion-card-content>
+    <ion-textarea
+      #description
+      auto-grow="false"
+      maxlength="140"
+      placeholder="Click here to write a short description"
+      rows="5"
+      type="text"
+      (keyup)="setDescription($event)"
+    ></ion-textarea>
+    <ion-label class="total-char">{{ totalCharacters }} / 140</ion-label>
+  </ion-card-content>
+</ion-card>
+
+<ion-fab vertical="bottom">
+  <ion-fab-button (click)="submit()" class="btn-submit" color="light">
+    <ion-icon name="save-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

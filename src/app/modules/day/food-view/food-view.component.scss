@@ -1,0 +1,72 @@
+.food-type-container {
+  width: 11em;
+  height: 3em;
+  margin: auto;
+  border-radius: 25px;
+}
+
+.food-type-content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+.food-photo {
+  width: 10em;
+  height: 10em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.2em;
+}
+
+.food-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-frame {
+  border: 5px dashed lightgray;
+}
+
+.photo-container {
+  width: 8em;
+  height: 8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo {
+  object-fit: cover;
+  max-width: 9em;
+  max-height: 9em;
+  transform: scale(0.9, 0.9);
+}
+
+.photo-icon {
+  height: 64px;
+  width: 64px;
+  color: lightgray;
+}
+
+.photo-description {
+  max-height: 100%;
+}
+
+.photo-p {
+  color: gray;
+  width: 100%;
+  line-height: 13px;
+}
+
+ion-icon {
+  font-size: 2.5em;
+  color: lightgray;
+}
+
+h1 {
+  color: black;
+}

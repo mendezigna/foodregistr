@@ -1,0 +1,55 @@
+<ion-content>
+  <div class="container">
+    <div class="header">
+      <img src="assets/icon/logo.svg" class="logo" />
+      <h2 class="title">FoodRegistr</h2>
+    </div>
+    <div class="signup-form">
+      <div class="fields">
+        <div class="field email-field">
+          <text-input-field
+            icon="mail-outline"
+            placeholder="E-mail"
+            type="email"
+            (keyup)="setEmail($event)"
+          ></text-input-field>
+        </div>
+        <div class="field">
+          <password-input-field
+            placeholder="Password"
+            (keyup)="setPassword($event)"
+          ></password-input-field>
+          <div class="fieldError">
+            <ion-label *ngIf="invalidFields"
+              >The password is invalid or the user does not have a
+              password.</ion-label
+            >
+            <ion-label *ngIf="emailVerify"
+              >Please verify your email address.</ion-label
+            >
+          </div>
+        </div>
+      </div>
+      <div class="submit">
+        <ion-button
+          class="submit-button"
+          (click)="onSubmit()"
+          fill="clear"
+          type="submit"
+          size="small"
+          color="dark"
+          strong
+          >Login</ion-button
+        >
+      </div>
+    </div>
+    <div class="redirect">
+      <ion-label
+        class="redirect-button"
+        routerLink="../signup"
+        routerLinkActive="active"
+        >I don't have an account</ion-label
+      >
+    </div>
+  </div>
+</ion-content>
