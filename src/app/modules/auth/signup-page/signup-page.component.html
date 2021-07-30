@@ -1,7 +1,9 @@
 <ion-content>
   <div class="container">
     <div class="header">
-      <img src="assets/icon/logo.svg" class="logo" />
+      <div class="logo-container">
+        <img src="assets/icon/logo.svg" class="logo" />
+      </div>
       <h2 class="title">FoodRegistr</h2>
     </div>
     <div class="signup-form">
@@ -67,15 +69,11 @@
         </div>
       </div>
       <div class="submit">
-        <ion-button
+        <button
           class="submit-button"
           (click)="onSubmit()"
-          fill="clear"
           type="submit"
-          size="small"
-          color="dark"
-          strong
-          >Sign Up</ion-button
+          >Sign Up <ion-icon name="arrow-forward-circle-outline" class="submit-btn-icon"></ion-icon> </button
         >
       </div>
     </div>

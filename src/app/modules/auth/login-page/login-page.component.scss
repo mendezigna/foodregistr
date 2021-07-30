@@ -1,5 +1,5 @@
 ion-content {
-  --ion-background-color: #e5e5e5;
+  --ion-background-color: var(--colorGrey);
 }
 .container {
   padding-top: 25%;
@@ -12,6 +12,8 @@ ion-content {
   width: 300px;
   display: flex;
   padding-bottom: 60px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .fields {
@@ -35,18 +37,29 @@ ion-content {
 }
 
 .logo {
+  width: 80px;
+  height: 75px;
+  margin-top: -5px;
+}
+
+.logo-container {
+  background-color: white;
+  border-radius: 25px;
   width: 90px;
-  height: 100px;
+  height: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0.8);
 }
 
 .title {
   font-weight: bold;
   font-style: normal;
-  text-align: left;
   font-size: 36px;
   letter-spacing: 0em;
-  padding-top: 20px;
-  color: #000000;
+  color: white;
+  display: block;
 }
 
 .redirect {
@@ -54,9 +67,11 @@ ion-content {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  margin-top: 2em;
 }
 .redirect-button {
   font-weight: normal;
+  color: white;
 }
 .submit {
   width: min-content;
@@ -67,12 +82,15 @@ ion-content {
 }
 
 .submit-button {
-  font-style: normal;
   font-weight: bold;
+  color: #000000;
+  font-size: 36px;
+  display: flex;
+  border-radius: 25px;
+  padding: 10px;
+}
 
-  color: #000000;
-  text-align: left;
-  font-size: 48px;
-  height: 80px;
-  color: #000000;
+.submit-btn-icon {
+  margin-left: 5px;
+  transform: scale(1.2);
 }
