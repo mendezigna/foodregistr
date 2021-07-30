@@ -1,4 +1,4 @@
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
@@ -46,7 +46,7 @@ export const authRoutes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    IonicModule
+    IonicModule,
   ],
   providers: [AuthService],
 })
